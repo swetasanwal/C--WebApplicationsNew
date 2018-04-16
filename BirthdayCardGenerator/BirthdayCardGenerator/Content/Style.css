@@ -1,0 +1,52 @@
+﻿h1 {
+    background-color: black;
+    color: white;
+}
+
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+para {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+}
+
+.parawrapper {
+    font: 200;
+}
+
+.wrapper {
+    text-align: center;
+}
+
+.button {
+    position: absolute;
+    top: 30%;
+    background-color:green;
+    color: white;
+}
+
+body {
+    background-image: url(birthday6.jpg);
+    background-size: cover;
+}
