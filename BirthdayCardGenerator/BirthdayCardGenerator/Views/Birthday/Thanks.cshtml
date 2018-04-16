@@ -5,4 +5,26 @@
 }
 
 <!DOCTYPE html>
-<h1>Your wishes are send to @Model.Receiver!</h1>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BirthdayGenerator</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <h1 class="text-center">Birthday Card Generator</h1>
+
+    <h2 class="text-center">Birthday Card Sent</h2>
+
+    @using (Html.BeginForm())
+    {
+        <p class="para text-center">From: @Model.Sender</p>
+        <p class="para text-center">To: @Model.Receiver</p>
+        <p class="para text-center">Message: @Model.Message</p>
+        
+    }
+</body>
+</html>
+

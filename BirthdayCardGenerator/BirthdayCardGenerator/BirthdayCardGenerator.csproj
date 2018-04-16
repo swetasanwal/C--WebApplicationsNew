@@ -89,12 +89,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\birthday.jpg" />
-    <Content Include="Content\birthday1.jpg" />
-    <Content Include="Content\birthday2.jpg" />
-    <Content Include="Content\birthday3.jpg" />
-    <Content Include="Content\birthday4.jpg" />
-    <Content Include="Content\birthday5.jpg" />
     <Content Include="Content\birthday6.jpg" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />

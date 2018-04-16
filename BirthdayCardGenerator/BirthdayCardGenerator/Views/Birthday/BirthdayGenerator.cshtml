@@ -14,18 +14,16 @@
     <link href="~/Content/Style.css" rel="stylesheet" />
 </head>
 <body>
-    <h1 class="text-center">Birthday Card Generator</h1>
-    <h2 class="text-center">Send a Birthday Card</h2>
+    <h1>Birthday Card Generator</h1>
+    <h2>Send a Birthday Card</h2>
 
     @using (Html.BeginForm())
     {
         @Html.ValidationSummary()
-        <p class="para text-center">From: @Html.TextBoxFor(t => t.Sender)</p>
-        <p class="para text-center">To: @Html.TextBoxFor(t => t.Receiver)</p>
-        <p class="para text-center">Message: @Html.TextBoxFor(t => t.Message)</p>
-        <div class="wrapper">
-            <button class="button">Send Card</button>
-        </div>
+        <p>From: @Html.TextBoxFor(t => t.Sender)</p>
+        <p>To: @Html.TextBoxFor(t => t.Receiver)</p>
+        <p>Message: @Html.TextBoxFor(t => t.Message)</p>
+        <input class = "btn btn-success"type="submit" value="Send Card" />
 
     }
 </body>
