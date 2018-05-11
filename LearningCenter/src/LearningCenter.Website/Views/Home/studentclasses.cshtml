@@ -1,0 +1,30 @@
+﻿@model LearningCenter.Website.Models.ClassListViewModel
+
+@{
+    ViewBag.Title = "studentclasses";
+}
+
+<head>
+    <link rel="stylesheet" href="~/Content/style.css" />
+</head>
+<h2>Student classes</h2>
+
+@using (Html.BeginForm("studentclasses", "Home", FormMethod.Get, new { role = "form" }))
+{
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+        @foreach (var class_list in Model.ClassLists)
+        {
+            <tr>
+                <td>@class_list.Name</td>
+                <td>@class_list.Description</td>
+                <td>@string.Format("{0:C}", class_list.Price)</td>
+            </tr>
+        }
+    </table>
+}
+

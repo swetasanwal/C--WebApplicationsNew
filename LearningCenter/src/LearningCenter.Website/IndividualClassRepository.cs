@@ -9,28 +9,32 @@ namespace LearningCenter.Website
     public interface IIndividualClassRepository
     {
         void Add(int userId, int classID);
-        ClassListModel[] ClassList { get; }
+        ClassListModel[] ClassList(int userId);
     }
     public class IndividualClassRepository: IIndividualClassRepository
     {
         public void Add(int userId, int classId)
         {
-            var class_info = GetClass(classId);
+            var user = GetUser(userId);
 
-            DatabaseAccessor.Instance.Users.FirstOrDefault(t => t.UserId == userId)
-                                                   .Classes
-                                                  .Add(new LearningCenter.Database.Class
-                                                  {
-                                                      ClassId = class_info.Id,
-                                                      ClassName = class_info.Name,
-                                                      ClassDescription = class_info.Description,
-                                                      ClassPrice = class_info.Price
-                                                  });
-            DatabaseAccessor.Instance.SaveChanges(); 
+            var class_info = GetClass(classId);
+            
+            user.Classes.Add(class_info);
+
+            DatabaseAccessor.Instance.SaveChanges();
 
         }
 
-        public ClassListModel[] ClassList
+        public ClassListModel[] ClassList(int userId)
+        {
+            var user = GetUser(userId);
+
+            return user.Classes
+                .Select(t => new ClassListModel { Id = t.ClassId, Name = t.ClassName, Description = t.ClassDescription, Price = t.ClassPrice })
+                .ToArray();
+        }
+
+        /*public ClassListModel[] ClassList
         {
             get
             {
@@ -38,15 +42,26 @@ namespace LearningCenter.Website
                     .Select(t => new ClassListModel { Id = t.ClassId, Name = t.ClassName, Description = t.ClassDescription, Price = t.ClassPrice })
                     .ToArray();
             }
-        }
+        }*/
 
-        private ClassListModel GetClass(int classId)
+        private LearningCenter.Database.Class GetClass(int classId)
         {
 
             var class_info = DatabaseAccessor.Instance.Classes
-                .FirstOrDefault(t => t.ClassId == classId);
+                .Where(t => t.ClassId == classId)
+                .FirstOrDefault();
 
-            return new ClassListModel { Id = class_info.ClassId, Name = class_info.ClassName, Description = class_info.ClassDescription, Price = class_info.ClassPrice };
+            return class_info;
+
+        }
+
+        private LearningCenter.Database.User GetUser(int userId)
+        {
+            var user_info = DatabaseAccessor.Instance.Users
+                    .Where(t => t.UserId == userId)
+                    .FirstOrDefault();
+
+            return user_info;
         }
     }
 }

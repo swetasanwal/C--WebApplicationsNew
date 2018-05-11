@@ -136,16 +136,28 @@ namespace LearningCenter.Website.Controllers
             var user = (LearningCenter.Website.Models.UserModel)Session["User"];
             model.classes = GetAllClasses();
 
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                //individualClassRepository.Add(user.Id, model.ClassId);
-                Console.WriteLine(user.Id);
-                Console.WriteLine(model.ClassId);
                 individualClassRepository.Add(user.Id, model.ClassId);
-                return RedirectToAction("Index");
+                return RedirectToAction("studentclasses");
             }
-
+            
             return View();
+            
+        }
+        
+        [Authorize]
+        public ActionResult studentclasses(IndividualClassModel model)
+        {
+            var user = (LearningCenter.Website.Models.UserModel)Session["User"];
+            var classes = individualClassRepository.ClassList(user.Id);
+
+            var model1 = new ClassListViewModel
+            {
+                ClassLists = classes
+            };
+
+            return View(model1);
         }
 
         private IEnumerable<SelectListItem> GetAllClasses()
